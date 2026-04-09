@@ -1,110 +1,117 @@
+:root {
+  --bg: #f5f6f8;
+  --card: #ffffff;
+  --text: #000000;
+  --subtext: #6d7885;
+  --border: #e1e3e6;
+  --link: #2a5885;
+  --link-hover: #1d4568;
+}
+
+@media (prefers-color-scheme: dark) {
   :root {
-    --bg: #f5f6f8;
-    --card: #ffffff;
-    --text: #000000;
-    --subtext: #6d7885;
-    --border: #e1e3e6;
-    --link: #2a5885;
-    --link-hover: #1d4568;
+    --bg: #141414;
+    --card: #1e1e1e;
+    --text: #e1e3e6;
+    --subtext: #939393;
+    --border: #2a2a2a;
+    --link: #71aaeb;
+    --link-hover: #99c1f1;
+  }
+}
+
+/* Общие правила */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px; /* базовый размер шрифта */
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+}
+
+/* Фид */
+.feed {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 90vh;
+  align-items: flex-start; /* выравнивание по левому краю */
+  width: 100%;
+  max-width: 520px; /* максимум фида */
+  max-height: 90vh;  /* например, чтобы был скролл */
+  overflow-y: auto;
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #141414;
-      --card: #1e1e1e;
-      --text: #e1e3e6;
-      --subtext: #939393;
-      --border: #2a2a2a;
-      --link: #71aaeb;
-      --link-hover: #99c1f1;
-    }
-  }
+/* Посты */
+.post {
+  display: inline-block;  /* ширина зависит от содержимого */
+  max-width: 90%;         /* не больше 90% фида */
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 1rem;        /* масштабируется с html */
+  line-height: 1.45;
+}
 
-  * {
-    box-sizing: border-box;
-  }
+.post-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
 
-  html {
-    scroll-behavior: smooth;
-    font-size: 16px; /* базовый размер */
-    }
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4a76a8, #6aa9ff);
+  margin-right: 10px;
+  flex-shrink: 0;
+}
 
+.meta {
+  display: flex;
+  flex-direction: column;
+}
 
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    display: flex;
-    justify-content: center;
-    padding: 16px;
-  }
-  .feed {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    padding-bottom: 90vh;
-    align-items: flex-start; /* чтобы блоки выравнивались по левому краю */
-    width: 100%;                /* чтобы занимал всю доступную ширину контейнера */
-    max-width: 520px;
-  }
+.name {
+  font-weight: 600;
+  font-size: 14px;
+}
 
-  .post {
-    width: fit-content;      /* сжимается по содержимому */
-    max-width: 90%;          /* но не больше 90% от фида */
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px;
-  }
+.date {
+  font-size: 14px;
+  color: var(--subtext);
+  text-align: right;
+}
 
-  .post-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 12px;
-  }
+.post-text {
+  font-size: 1rem;  /* масштабируется с html */
+  line-height: 1.45;
+  word-wrap: break-word;
+}
 
-  .avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #4a76a8, #6aa9ff);
-    margin-right: 10px;
-    flex-shrink: 0;
-  }
+.post-text p {
+  margin: 0 0 10px;
+}
 
-  .meta {
-    display: flex;
-    flex-direction: column;
-  }
+.post-text p:last-child {
+  margin-bottom: 0;
+}
 
-  .name {
-    font-weight: 600;
-    font-size: 14px;
-  }
-
-  .date {
-    font-size: 14px;
-    color: var(--subtext);
-    text-align: right
-  }
-
-  .post-text {
-    font-size: clamp(14px, 3vw, 16px);
-    line-height: 1.45;
-  }
-
-  .post-text p {
-    margin: 0 0 10px;
-  }
-
-  .post-text p:last-child {
-    margin-bottom: 0;
-  }
-
-  /* 🔗 ССЫЛКИ В СТИЛЕ VK */
-  /* базовые стили */
-  .vk-link,
+/* 🔗 ССЫЛКИ В СТИЛЕ VK */
+.vk-link,
 .vk-link-external {
   color: var(--link);
   cursor: pointer;
@@ -112,82 +119,90 @@
   transition: color 0.15s ease;
 }
 
-/* hover */
 .vk-link:hover,
 .vk-link-external:hover {
   color: var(--link-hover);
   text-decoration: underline;
 }
 
-/* active */
 .vk-link:active,
 .vk-link-external:active {
   opacity: 0.8;
   text-decoration: none;
 }
 
-/* visited */
 .vk-link:visited,
 .vk-link-external:visited {
   color: var(--link);
   text-decoration: none;
 }
 
+@media (prefers-color-scheme: dark) {
+  .post-text a {
+    text-decoration-color: rgba(113, 170, 235, 0.35);
+  }
+}
 
-  @media (prefers-color-scheme: dark) {
-    .post-text a {
-      text-decoration-color: rgba(113, 170, 235, 0.35);
-    }
+/* Заголовки */
+.vk-h1 {
+  font-size: 1.25rem; /* 20px */
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0 0 10px;
+  color: var(--text);
+  text-transform: uppercase;
+}
+
+.vk-h2 {
+  font-size: 1.0625rem; /* 17px */
+  font-weight: 600;
+  line-height: 1;
+  margin: 0 0 -20px;
+  color: var(--text);
+  text-transform: uppercase;
+}
+
+.vk-h3 {
+  font-size: 0.9375rem; /* 15px */
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0 0 6px;
+  color: var(--text);
+  text-transform: uppercase;
+}
+
+.vk-h4 {
+  font-size: 0.875rem; /* 14px */
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0 0 4px;
+  color: var(--text);
+}
+
+.vk-h-subtle {
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 500;
+  color: var(--subtext);
+  margin: 8px 0 4px;
+}
+
+/* Мобильные стили */
+@media (max-width: 480px) {
+  html {
+    font-size: 14px; /* увеличиваем текст на маленьких экранах */
   }
 
-  .vk-h1 {
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1.3;
-    margin: 0 0 10px;
-    color: var(--text);
-    text-transform: uppercase;
+  .post {
+    max-width: 100%; /* пост может занимать почти весь фид */
+  }
+}
+
+@media (max-width: 400px) {
+  .post {
+    padding: 14px;
   }
 
-  .vk-h2 {
-    font-size: 17px;
-    font-weight: 600;
-    line-height: 1.0;
-    margin: 0 0 -20px;
-    color: var(--text);
-    text-transform: uppercase;
+  .post-text {
+    font-size: 1rem; /* подстраиваем текст */
   }
-
-  .vk-h3 {
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 1.4;
-    margin: 0 0 6px;
-    color: var(--text);
-    text-transform: uppercase;
-  }
-
-  .vk-h4 {
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.4;
-    margin: 0 0 4px;
-    color: var(--text);
-  }
-
-  .vk-h-subtle {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--subtext);
-    margin: 8px 0 4px;
-  }
-
-  @media (max-width: 400px) {
-    .post {
-      padding: 12px;
-    }
-
-    .post-text {
-      font-size: 14px;
-    }
-  }
+}
