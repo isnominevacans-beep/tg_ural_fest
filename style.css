@@ -49,8 +49,6 @@ body {
   align-items: flex-start; /* выравнивание по левому краю */
   width: 100%;
   max-width: 520px; /* максимум фида */
-  max-height: 90vh;  /* например, чтобы был скролл */
-  overflow-y: auto;
   }
 
 /* Посты */
