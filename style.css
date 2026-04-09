@@ -187,7 +187,7 @@ body {
 /* Мобильные стили */
 @media (max-width: 480px) {
   html {
-    font-size: 14px; /* увеличиваем текст на маленьких экранах */
+    font-size: 16px; /* увеличиваем текст на маленьких экранах */
   }
 
   .post {
@@ -197,7 +197,7 @@ body {
 
 @media (max-width: 400px) {
   .post {
-    padding: 14px;
+    padding: 16px;
   }
 
   .post-text {
