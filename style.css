@@ -265,8 +265,8 @@ body.bg-loaded::before {
   padding: 0px 12px;
   border-radius: 12px;
 
-  background: var(--text);
-  color: var(--card-bg);
+  background: var(--card-bg); 
+  color: var(--text);
 
   font-size: 0.9rem;
   font-weight: 500;
