@@ -273,7 +273,7 @@ body.bg-loaded::before {
 
   box-shadow: 0 2px 10px rgba(0,0,0,0.15);
 
-  opacity: 0.5; /* 👈 важно! для теста сделай сразу видимой */
+  opacity: 0.8; /* 👈 важно! для теста сделай сразу видимой */
   z-index: 2000;
   pointer-events: none;
 }
