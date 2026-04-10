@@ -1,5 +1,5 @@
 :root {
-/*  --bg: #141414;*/
+  --bg: #f5f6f81;
   --card-bg: rgba(255, 255, 255, 0.95);
   --text: #000000;
   --subtext: #6d7885;
@@ -10,7 +10,7 @@
 
 /* 👇 ВАЖНО: темная тема через класс */
 :root.dark {
-/*  --bg: #141414;*/
+  --bg: #141414;
   --card-bg: rgba(30, 30, 30, 0.95);
   --card: #1e1e1e;
   --text: #e1e3e6;
@@ -27,8 +27,7 @@
 
 html {
   scroll-behavior: smooth;
-  background: #141414;
-
+  background: var(--bg);
 }
 
 body {
