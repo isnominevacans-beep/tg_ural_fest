@@ -1,6 +1,6 @@
 :root {
-  --bg: #f5f6f8;
-  --card: #ffffff;
+  --bg: #f5f6f81;
+  --card-bg: rgba(255, 255, 255, 0.95);
   --text: #000000;
   --subtext: #6d7885;
   --border: #e1e3e6;
@@ -11,6 +11,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #141414;
+    --card-bg: rgba(30, 30, 30, 0.95);
     --card: #1e1e1e;
     --text: #e1e3e6;
     --subtext: #939393;
@@ -27,7 +28,6 @@
 
 html {
   scroll-behavior: smooth;
-  font-size: 16px; /* базовый размер шрифта */
 }
 
 body {
@@ -37,7 +37,20 @@ body {
   color: var(--text);
   display: flex;
   justify-content: center;
-  padding: 16px;
+  padding: 0px;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+
+  background-image: url("https://sun9-29.vkuserphoto.ru/s/v1/ig2/iAysFU33Z4f0VvsAYpiQ4WnPYuw7ll79BGHK_Qwgcrpd9lLRDPnks_EvEXePKPKayCO1jYkj8UmGUZUZGuDmXFan.jpg?quality=95&as=32x57%2C48x85%2C72x128%2C108x192%2C160x284%2C240x427%2C360x640%2C480x853%2C540x960%2C640x1138%2C720x1280%2C940x1671&cs=940x0");  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  transform: translateZ(0); /* GPU hint */
 }
 
 /* Фид */
@@ -46,21 +59,26 @@ body {
   flex-direction: column;
   gap: 12px;
   padding-bottom: 90vh;
+  padding-top: 12px;
+  padding-left: 12px;
   align-items: flex-start; /* выравнивание по левому краю */
-  width: 100%;
+  width: 95%;
   max-width: 520px; /* максимум фида */
+  position: relative;
   }
 
 /* Посты */
 .post {
   display: inline-block;  /* ширина зависит от содержимого */
   max-width: 90%;         /* не больше 90% фида */
-  background: var(--card);
+  background: var(--card-bg);
+  box-shadow: 0 1px 10px rgba(0,0,0,0.15);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 16px;
-  font-size: 1rem;        /* масштабируется с html */
-  line-height: 1.45;
+  font-size: 14px;        /* масштабируется с html */
+  line-height: 1.0;
+  scroll-margin-top: 6px; /* подбери значение */
 }
 
 .post-header {
@@ -95,17 +113,9 @@ body {
 }
 
 .post-text {
-  font-size: 1rem;  /* масштабируется с html */
-  line-height: 1.45;
+  font-size: 0.9rem;  /* масштабируется с html */
+  line-height: 1.2;
   word-wrap: break-word;
-}
-
-.post-text p {
-  margin: 0 0 10px;
-}
-
-.post-text p:last-child {
-  margin-bottom: 0;
 }
 
 /* 🔗 ССЫЛКИ В СТИЛЕ VK */
@@ -184,23 +194,54 @@ body {
   margin: 8px 0 4px;
 }
 
-/* Мобильные стили */
-@media (max-width: 480px) {
-  html {
-    font-size: 16px; /* увеличиваем текст на маленьких экранах */
-  }
-
-  .post {
-    max-width: 100%; /* пост может занимать почти весь фид */
-  }
+/* фиксированный слой поверх */
+.floating-ui {
+  position: fixed;
+  inset: 0;
+  pointer-events: none; /* чтобы не мешал кликам */
+  z-index: 1000;
 }
 
-@media (max-width: 400px) {
-  .post {
-    padding: 16px;
-  }
-
-  .post-text {
-    font-size: 1rem; /* подстраиваем текст */
-  }
+/* центрируем как .feed */
+.floating-inner {
+  max-width: 520px; /* тот же что у .feed */
+  margin: 0 auto;
+  height: 100%;
+  position: relative;
 }
+
+/* сама кнопка */
+.scroll-btn {
+  position: absolute;
+  right: 2%;
+  bottom: 20px;
+
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+
+  background: var(--card-bg);
+  color: var(--text);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+
+  cursor: pointer;
+  pointer-events: auto;
+
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.2s ease;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  line-height: 1;
+  font-size: 20px;
+}
+
+.scroll-btn.visible {
+  opacity: 1;
+  transform: translateY(0) rotate(90deg);
+}
+
