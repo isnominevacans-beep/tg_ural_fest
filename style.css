@@ -1,5 +1,5 @@
 :root {
-  --bg: #f5f6f81;
+  --bg: #f5f6f8;
   --card-bg: rgba(255, 255, 255, 0.95);
   --text: #000000;
   --subtext: #6d7885;
@@ -8,17 +8,16 @@
   --link-hover: #1d4568;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #141414;
-    --card-bg: rgba(30, 30, 30, 0.95);
-    --card: #1e1e1e;
-    --text: #e1e3e6;
-    --subtext: #939393;
-    --border: #2a2a2a;
-    --link: #71aaeb;
-    --link-hover: #99c1f1;
-  }
+/* 👇 ВАЖНО: темная тема через класс */
+:root.dark {
+  --bg: #141414;
+  --card-bg: rgba(30, 30, 30, 0.95);
+  --card: #1e1e1e;
+  --text: #e1e3e6;
+  --subtext: #939393;
+  --border: #2a2a2a;
+  --link: #71aaeb;
+  --link-hover: #99c1f1;
 }
 
 /* Общие правила */
@@ -113,7 +112,7 @@ body::before {
 }
 
 .post-text {
-  font-size: 0.9rem;  /* масштабируется с html */
+  font-size: 1rem;  /* масштабируется с html */
   line-height: 1.2;
   word-wrap: break-word;
 }
@@ -245,3 +244,7 @@ body::before {
   transform: translateY(0) rotate(90deg);
 }
 
+.scroll-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(42, 88, 133, 0.3);
+}
