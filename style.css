@@ -275,5 +275,5 @@ body.bg-loaded::before {
 
   opacity: 0.95; /* 👈 важно! для теста сделай сразу видимой */
   z-index: 2000;
-  pointer-events: none;
+  cursor: pointer;
 }
